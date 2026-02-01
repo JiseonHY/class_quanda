@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>강의실</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; background-color: #f8f9fa; padding: 20px; }
+        .video-wrapper { position: relative; display: inline-block; width: 100%; max-width: 800px; background: #000; border-radius: 10px; overflow: hidden; }
+        /* 영상 위를 투명하게 덮어 우클릭과 클릭을 방해합니다 */
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 90%; z-index: 10; cursor: default; }
+        iframe { width: 100%; height: 450px; border: none; }
+        .btn-list { margin-top: 20px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        button { padding: 12px 20px; border: none; background: #007bff; color: #fff; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body oncontextmenu="return false">
+
+    <h2>🎥 온라인 수업 강의실</h2>
+    <p>보실 강의를 선택하세요. (다운로드 및 무단 배포 금지)</p>
+
+    <div class="video-wrapper">
+        <div class="overlay"></div>
+        <iframe id="videoPlayer" src="" allow="autoplay"></iframe>
+    </div>
+
+    <div class="btn-list">
+        <button onclick="playDriveVideo('https://drive.google.com/file/d/18sBSVdGRXiHRO8fGvC96SLZE0UsKsDL_/view?usp=drive_link')">1강 시청</button>
+        <button onclick="playDriveVideo('https://drive.google.com/file/d/1ozUamlGQ6VyrzWFCEGhMQNS80Fd8dg8m/view?usp=drive_link')">2강 시청</button>
+        <button onclick="playDriveVideo('https://drive.google.com/file/d/1t1tnVGiOTC0vjddAxgJE9foeidVwIUzY/view?usp=drive_link')">3강 시청</button>
+        <button onclick="playDriveVideo('https://drive.google.com/file/d/1cejPFh9y3BUi6Ytuc2bLn8MK9QWuXZcw/view?usp=drive_link')">4강 시청</button>
+        <button onclick="playDriveVideo('https://drive.google.com/file/d/1qX05MCk0u-Vc7AVKYS8WbkV2eVzPV4qA/view?usp=drive_link')">5강 시청</button>
+    </div>
+
+    <script>
+        function playDriveVideo(driveUrl) {
+            // 구글 드라이브 일반 링크를 재생 가능한 링크로 변환하는 마법입니다.
+            var videoId = driveUrl.split('/d/')[1].split('/')[0];
+            var playUrl = "https://drive.google.com/file/d/" + videoId + "/preview";
+            
+            document.getElementById('videoPlayer').src = playUrl;
+        }
+        
+        // 첫 화면에 1강이 나오게 하고 싶다면 (선택사항)
+        // window.onload = function() { playDriveVideo('여기에_1강_주소_입력'); };
+    </script>
+</body>
+</html>
